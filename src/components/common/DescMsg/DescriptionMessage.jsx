@@ -1,6 +1,7 @@
+
 function DescriptionMessage({
   icon,
-  title: { text = "", excerptLength = 0 },
+  title: { text = " ", excerptLength = 0 } = {},
   p1,
   p2,
 }) {
@@ -8,9 +9,9 @@ function DescriptionMessage({
     <div className="register-page__rsec-desc">
       <span>{icon}</span>
       <h2>
-        {text?.split(" ").slice(0, excerptLength).join(" ")}
+        {text.split(" ").slice(0, excerptLength).join(" ")}
         <br />
-        {text?.split(" ").slice(excerptLength).join(" ")}
+        {text.split(" ").slice(excerptLength).join(" ")}
       </h2>
       <div>
         <p style={{ marginBottom: ".5rem" }}>{p1}</p>
@@ -19,5 +20,7 @@ function DescriptionMessage({
     </div>
   );
 }
+
+
 
 export default DescriptionMessage;

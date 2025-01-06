@@ -1,5 +1,7 @@
 function SignupOne() {
-  return <div></div>;
+  return <>
+  
+  </>;
 }
 
 export default SignupOne;
