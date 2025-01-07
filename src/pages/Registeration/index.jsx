@@ -14,12 +14,12 @@ function RegisterPage() {
 
   return (
     <main className="register-page">
-       <LeftSection pageNum={pageNum} setPageNum={setPageNum} /> 
+      <LeftSection pageNum={pageNum} setPageNum={setPageNum} />
       {/* display message in the Right side of the registeration page */}
-       {/* <EmailCheck />*/}
+      {/* <EmailCheck />*/}
       {/* <EmailVerified />*/}
-     {/*  <StoreForm />*/}
-      <RightSection  />
+      {/*  <StoreForm />*/}
+      <RightSection pageNum={pageNum} />
       <div className="register-page__arrow">
         <ArrowBgIcon />
       </div>

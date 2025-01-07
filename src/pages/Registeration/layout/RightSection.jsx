@@ -6,8 +6,7 @@ import {
 import DescriptionMessage from "../../../components/common/DescMsg/DescriptionMessage";
 
 export function DescMessage(pageNum) {
-  switch (pageNum
-  ) {
+  switch (pageNum) {
     case 1: {
       return {
         icon: <StarsSvg />,
@@ -46,7 +45,7 @@ export function DescMessage(pageNum) {
   }
 }
 
-function RightSection(pageNum) {
+function RightSection({ pageNum = 1 }) {
   const { icon, title, p1, p2 } = DescMessage(pageNum);
   return (
     <section className="register-page__rsec">
