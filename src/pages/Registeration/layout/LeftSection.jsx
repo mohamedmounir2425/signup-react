@@ -55,7 +55,7 @@ function LeftSide() {
         <LogoIcon width={100} height={45} />
         <div style={{ margin: "1.5rem 0" }}>
           <Steps
-            size="small"
+            size="large"
             current={step}
             labelPlacement="vertical"
             items={items}

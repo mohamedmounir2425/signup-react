@@ -1,6 +1,7 @@
 import { Steps } from "antd";
 import { useState } from "react";
 import { LeftArrow, LogoIcon, MsgIcon, SecMsgIcon } from "../assets/icons/Icons";
+import Otp from "./common/OTP/Otp";
 
 
 const items = [
@@ -60,19 +61,17 @@ const items = [
              {/* main */}
              <main className="register-page__lsec--main">
              <div className="header">
-                     <div className="shadowOne">
-                         <div className="shadowTwo">
-                             <SecMsgIcon />
-                         </div>
-                     </div>
+             
+             <SecMsgIcon className="icon-msg" />
+                     
 
                      <h1 className="header-title">Check your email</h1>
                      <p className="header-description-one">We sent a verification code to</p>
                      <p className="header-description-two">omarmouneer@gmail.com</p>
              </div>
              <div className="otp-form">
-                     
-                     <button type="submit" className="submit-btn">
+                     <Otp/>
+                     <button type="submit" className="verify-btn">
                          Verify email
                      </button>
                  </div>
