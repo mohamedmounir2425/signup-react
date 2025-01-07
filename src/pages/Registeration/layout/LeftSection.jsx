@@ -2,15 +2,34 @@ import { MsgIcon } from "../../../assets/icons/Icons";
 
 import Header from "../../../components/layout/Header";
 import PersonalDetailsForm from "../../../components/common/steps/PersonalDetailsForm/PersonalDetailsForm.jsx";
+import EmailCheck from "../../../components/emailCheck.jsx";
+import EmailVerified from "../../../components/EmailVerified.jsx";
+import StoreForm from "../../../components/StoreForm.jsx";
+import { useState } from "react";
 
-function LeftSide() {
+function LeftSide({ setPageNum, pageNum }) {
+  const [emailChecked, setEmailChecked] = useState(false);
   return (
     <section className="register-page__lsec">
       {/* layout */}
-      <Header />
+      <Header pageNum={pageNum} />
       {/* main */}
       <main className="register-page__lsec--main">
-        <PersonalDetailsForm />
+        {[0, 1].includes(pageNum) && (
+          <PersonalDetailsForm setPageNum={setPageNum} />
+        )}
+        {pageNum === 2 && (
+          <>
+            {!emailChecked && <EmailCheck setEmailChecked={setEmailChecked} />}
+            {emailChecked && (
+              <EmailVerified
+                setPageNum={setPageNum}
+                setEmailChecked={setEmailChecked}
+              />
+            )}
+          </>
+        )}
+        {pageNum === 3 && <StoreForm setPageNum={setPageNum} />}
       </main>
 
       {/* footer */}

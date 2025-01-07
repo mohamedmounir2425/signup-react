@@ -16,8 +16,8 @@ const items = [
     description: "Set your store main info",
   },
 ];
-function Header() {
-  const [step, setStep] = useState(0);
+function Header({ pageNum }) {
+  const [step, setStep] = useState(pageNum - 1);
   const handleMinus = () => {
     if (step > 0) setStep((s) => s - 1);
   };
@@ -30,7 +30,7 @@ function Header() {
       <div style={{ margin: "1.5rem 0" }}>
         <Steps
           size="small"
-          current={step}
+          current={pageNum}
           labelPlacement="vertical"
           items={items}
         />

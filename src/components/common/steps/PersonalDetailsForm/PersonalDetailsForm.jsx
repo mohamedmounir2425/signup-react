@@ -5,7 +5,7 @@ import { LanguageIcon } from "../../../../assets/icons/Icons";
 import "./PersonalDetailsForm.css";
 import "react-phone-input-2/lib/style.css";
 
-function PersonalDetailsForm() {
+function PersonalDetailsForm({ setPageNum }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -79,7 +79,11 @@ function PersonalDetailsForm() {
           />
           <p className="error-msg">Must be at least 8 characters.</p>
         </div>
-        <button type="submit" className="submit-btn">
+        <button
+          type="submit"
+          className="submit-btn"
+          onClick={() => setPageNum(2)}
+        >
           Get Started
         </button>
         <p className="existed-account">
