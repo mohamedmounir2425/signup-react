@@ -18,12 +18,7 @@ const items = [
 ];
 function Header({ pageNum }) {
   const [step, setStep] = useState(pageNum - 1);
-  const handleMinus = () => {
-    if (step > 0) setStep((s) => s - 1);
-  };
-  const handleAdd = () => {
-    if (step < items.length) setStep((s) => s + 1);
-  };
+
   return (
     <header className="register-page__lsec--header">
       <LogoIcon width={100} height={45} />

@@ -1,64 +1,114 @@
-import  { useState } from "react";
+import { useState } from "react";
+const countries = [
+    { code: "us", name: "English", flag: "../src/assets/images/languages/english.png" },
+    { code: "gb", name: "Arabic", flag: "../src/assets/images/languages/arabic.png" },
+];
 
 const CustomSelect = () => {
-    const languages = [
-        {
-            value: "en",
-            label: "English",
-            icon: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg",
-        },
-        {
-            value: "ar",
-            label: "Arabic",
-            icon: "https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_United_Arab_Emirates.svg",
-        },
-        {
-            value: "fr",
-            label: "French",
-            icon: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg",
-        },
-    ];
+    const [selectedCountry, setSelectedCountry] = useState(countries[0]); // Default country
+    const [isOpen, setIsOpen] = useState(false); // Track dropdown visibility
 
-    const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
-
-    const handleChange = (event) => {
-        const selectedValue = event.target.value;
-        const selectedLang = languages.find((lang) => lang.value === selectedValue);
-        setSelectedLanguage(selectedLang);
+    const handleSelect = (country) => {
+        setSelectedCountry(country); // Update selected country
+        setIsOpen(false); // Close dropdown
     };
 
     return (
-        <div style={{ width: "250px" }}>
-            <label htmlFor="language-select" style={{ marginBottom: "8px", display: "block", fontWeight: "bold" }}>
-                Store language
-            </label>
-            <div style={{ position: "relative", display: "inline-block", width: "100%" }}>
-                <select
-                    id="language-select"
-                    value={selectedLanguage.value}
-                    onChange={handleChange}
+        <div style={{ position: "relative", display: "inline-block", width: "100%" }}>
+            {/* Dropdown Button */}
+            <div
+                onClick={() => setIsOpen(!isOpen)} // Toggle dropdown visibility
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "10px 14px",
+                    borderRadius: "8px",
+                    border: "1px solid #d0d5dd",
+                    backgroundColor: "#f9fafb",
+                    cursor: "pointer",
+                    transition: "all 0.2s",
+                    fontSize: "0.875rem",
+                    fontWeight: "500",
+                    lineHeight: "1.25rem",
+                    color: "#344054",
+                }}
+            >
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                        src={selectedCountry.flag}
+                        alt={`${selectedCountry.name} Flag`}
+                        style={{
+                            width: "20px",
+                            height: "15px",
+                            marginRight: "10px",
+                            borderRadius: "4px",
+                        }}
+                    />
+                    <span>{selectedCountry.name}</span>
+                </div>
+                <span style={{ fontSize: "18px", color: "#667085" }}>
+                    {isOpen ? (
+                        <i className="fas fa-chevron-up" />
+                    ) : (
+                        <i className="fas fa-chevron-down" />
+                    )}
+                </span>
+            </div>
+
+            {/* Dropdown Menu */}
+            {isOpen && (
+                <div
                     style={{
-                        appearance: "none",
-                        WebkitAppearance: "none",
-                        MozAppearance: "none",
-                        width: "100%",
-                        padding: "12px 16px",
-                        border: "1px solid #ccc",
+                        position: "absolute",
+                        top: "100%",
+                        left: 0,
+                        backgroundColor: "#fff",
+                        border: "1px solid #d0d5dd",
                         borderRadius: "8px",
-                        fontSize: "16px",
-                        backgroundSize: "20px 20px, 12px 12px",
-                        backgroundColor: "#f9f9f9",
-                        paddingLeft: "50px",
+                        boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+                        zIndex: 1000,
+                        width: "100%",
+                        maxHeight: "300px",
+                        overflowY: "auto",
+                        transition: "all 0.3s ease-in-out",
+                        marginTop: "5px",
                     }}
                 >
-                    {languages.map((lang) => (
-                        <option key={lang.value} value={lang.value}>
-                            {lang.label}
-                            <img src={lang.icon} alt="" />
-                        </option>
+                    {countries.map((country) => (
+                        <div
+                            key={country.code}
+                            onClick={() => handleSelect(country)}
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                padding: "12px 14px",
+                                cursor: "pointer",
+                                fontSize: "0.875rem",
+                                fontWeight: "500",
+                                lineHeight: "1.25rem",
+                                color: "#344054",
+                                transition: "background-color 0.2s ease",
+                                borderBottom: "1px solid #f0f0f0",
+                            }}
+                            onMouseEnter={(e) => e.target.style.backgroundColor = "#f0f0f0"}
+                            onMouseLeave={(e) => e.target.style.backgroundColor = "transparent"}
+                        >
+                            <img
+                                src={country.flag}
+                                alt={`${country.name} Flag`}
+                                style={{
+                                    width: "20px",
+                                    height: "15px",
+                                    marginRight: "10px",
+                                    borderRadius: "4px",
+                                }}
+                            />
+                            <span>{country.name}</span>
+                        </div>
                     ))}
-                </select>
-            </div>
+                </div>
+            )}
         </div>
     );
 };

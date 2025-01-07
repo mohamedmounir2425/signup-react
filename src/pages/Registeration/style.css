@@ -5,7 +5,7 @@
 }
 .register-page__arrow {
   position: absolute;
-  bottom: 5rem;
+  bottom: 7rem;
   left: 54%;
   transform: translateX(-80%);
 }
@@ -316,3 +316,54 @@ a {
   box-sizing: border-box;
   width: 300px;
 }
+
+
+
+/* language*/
+/* Basic Styling for the Dropdown */
+.dropdown-container {
+  position: relative;
+  width: 200px;
+}
+
+.dropdown-button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 10;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.selected-item {
+  display: flex;
+  align-items: center;
+}
+
+.selected-item img {
+  width: 20px;
+  margin-right: 10px;
+}
+
