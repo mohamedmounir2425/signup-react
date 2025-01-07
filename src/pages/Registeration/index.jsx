@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import DescriptionMessage from "../../components/common/DescMsg/DescriptionMessage";
 import LeftSection from "./layout/LeftSection";
 import RightSection from "./layout/RightSection";
 import "./style.css";
