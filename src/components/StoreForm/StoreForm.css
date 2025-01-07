@@ -1,6 +1,6 @@
 /* General Form Container */
 .form-container {
-  max-width: 400px;
+  min-width: 450px;
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
@@ -20,21 +20,60 @@
 }
 
 /* Input Fields */
-.store-form-group input {
+
+/* Start style select store industry select  */
+.store-industry-ctr {
+  position: relative;
+  & select {
+    appearance: none;
+    & option {
+    }
+  }
+  & svg {
+    position: absolute;
+    inset: 50% 14px auto auto;
+    transform: translateY(-50%) rotate(0deg);
+    transition: all 0.2s;
+  }
+  &:has(select:focus) svg {
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
+
+.store-industry-ctr select > option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgb(208, 213, 221);
+  background-color: rgb(249, 250, 251);
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: rgb(52, 64, 84);
+}
+/* End style select store industry select  */
+
+.store-form-group input,
+.store-form-group select {
   width: 100%;
   padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid #d0d5dd;
   background-color: #f9fafb;
   font-size: 0.875rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.2s !important;
 }
 
 .store-form-group input::placeholder {
   color: #667085;
 }
 
-.store-form-group input:focus {
+.store-form-group input:focus,
+.store-form-group select:focus {
   border-color: #d6bbfb;
   outline: 1px solid #d6bbfb;
   box-shadow: 0px 0px 0px 4px #f7f0ff;

@@ -156,7 +156,10 @@
   font-size: 16px;
   cursor: pointer;
 }
-
+.verify-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
 .submit-btn:hover {
   background-color: #7144c8;
 }
@@ -167,12 +170,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.3rem;
   text-align: center;
   margin-top: 2rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #475467;
+  color: #475467 !important;
+  cursor: pointer;
 }
+
 .Log-In,
 .resend {
   color: #6941c6;
@@ -317,8 +323,6 @@ a {
   width: 300px;
 }
 
-
-
 /* language*/
 /* Basic Styling for the Dropdown */
 .dropdown-container {
@@ -367,3 +371,12 @@ a {
   margin-right: 10px;
 }
 
+/* adjust error msg */
+.error-msg {
+  color: red;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin-top: 0rem;
+  margin-bottom: 0px;
+}

@@ -2,96 +2,105 @@ import { TextField } from "@mui/material";
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import { LanguageIcon } from "../../../../assets/icons/Icons";
-import "./PersonalDetailsForm.css";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import "react-phone-input-2/lib/style.css";
+import "./PersonalDetailsForm.css";
 
 function PersonalDetailsForm({ setPageNum }) {
-  const [formData, setFormData] = useState({
+  const initialValues = {
     name: "",
     email: "",
     phone: "",
     password: "",
+  };
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    phone: Yup.string()
+      .required("Phone number is required")
+      .matches(/^\d{10,15}$/, "Invalid phone number"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters"),
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  const handleSubmit = (values) => {
+    console.log("Form Data:", values);
+    localStorage.setItem("personal-form", JSON.stringify(values));
+    setPageNum(1);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data:", formData);
-  };
-
-  const [phone, setPhone] = useState("");
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name*</label>
-          <input
-            type="text"
-            placeholder="Enter your name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            autoComplete="new-off"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email*</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="phone">Phone Number*</label>
-          <PhoneInput
-            inputProps={{
-              name: "phone",
-              required: true,
-              autoFocus: true,
-            }}
-            country="eg"
-            value={phone}
-            onChange={(value) => setPhone(value)}
-            placeholder="Enter your phone number "
-            dropdownStyle={{ zIndex: 100 }}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password*</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            autoComplete="new-password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Enter your password"
-          />
-          <p className="error-msg">Must be at least 8 characters.</p>
-        </div>
-        <button
-          type="submit"
-          className="submit-btn"
-          onClick={() => setPageNum(1)}
-        >
-          Get Started
-        </button>
-        <p className="existed-account">
-          Already have an accout? <a className="Log-In">Log in</a>
-        </p>
-      </form>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ values, setFieldValue }) => (
+          <Form>
+            <div className="form-group">
+              <label htmlFor="name">Name*</label>
+              <Field
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                autoComplete="off"
+              />
+              <ErrorMessage name="name" component="p" className="error-msg" />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Email*</label>
+              <Field type="email" name="email" placeholder="Enter your email" />
+              <ErrorMessage name="email" component="p" className="error-msg" />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number*</label>
+              <PhoneInput
+                inputProps={{
+                  name: "phone",
+                  required: true,
+                  autoFocus: true,
+                }}
+                country="eg"
+                value={values.phone}
+                onChange={(value) => setFieldValue("phone", value)}
+                placeholder="Enter your phone number"
+                dropdownStyle={{ zIndex: 100 }}
+              />
+              <ErrorMessage name="phone" component="p" className="error-msg" />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password">Password*</label>
+              <Field
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                autoComplete="new-password"
+              />
+              <ErrorMessage
+                name="password"
+                component="p"
+                className="error-msg"
+              />
+            </div>
+
+            <button type="submit" className="submit-btn">
+              Get Started
+            </button>
+            <p className="existed-account">
+              Already have an account? <a className="Log-In">Log in</a>
+            </p>
+          </Form>
+        )}
+      </Formik>
       <div className="Language">
         <p>عربى </p>
         <LanguageIcon />

@@ -1,25 +1,14 @@
 import { useState } from "react";
 import { ArrowDownIcon } from "../assets/icons/Icons";
-const countries = [
-  {
-    code: "us",
-    name: "English",
-    flag: "../src/assets/images/languages/english.png",
-  },
-  {
-    code: "gb",
-    name: "Arabic",
-    flag: "../src/assets/images/languages/arabic.png",
-  },
-];
 
-const CustomSelect = () => {
-  const [selectedCountry, setSelectedCountry] = useState(countries[0]); // Default country
+const CustomSelect = ({ options = [], id, onChange }) => {
+  const [selectedCountry, setSelectedCountry] = useState(options[0]); // Default country
   const [isOpen, setIsOpen] = useState(false); // Track dropdown visibility
 
   const handleSelect = (country) => {
     setSelectedCountry(country); // Update selected country
     setIsOpen(false); // Close dropdown
+    onChange(country.value);
   };
 
   return (
@@ -46,16 +35,18 @@ const CustomSelect = () => {
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            src={selectedCountry.flag}
-            alt={`${selectedCountry.name} Flag`}
-            style={{
-              width: "20px",
-              height: "15px",
-              marginRight: "10px",
-              borderRadius: "4px",
-            }}
-          />
+          {selectedCountry.flag && (
+            <img
+              src={selectedCountry.flag}
+              alt={`${selectedCountry.name} Flag`}
+              style={{
+                width: "20px",
+                height: "15px",
+                marginRight: "10px",
+                borderRadius: "4px",
+              }}
+            />
+          )}
           <span>{selectedCountry.name}</span>
         </div>
         <span style={{ fontSize: "18px", color: "#667085" }}>
@@ -92,10 +83,10 @@ const CustomSelect = () => {
             marginTop: "5px",
           }}
         >
-          {countries.map((country) => (
+          {options.map((option) => (
             <div
-              key={country.code}
-              onClick={() => handleSelect(country)}
+              key={option.value}
+              onClick={() => handleSelect(option)}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -113,17 +104,19 @@ const CustomSelect = () => {
                 (e.target.style.backgroundColor = "transparent")
               }
             >
-              <img
-                src={country.flag}
-                alt={`${country.name} Flag`}
-                style={{
-                  width: "20px",
-                  height: "15px",
-                  marginRight: "10px",
-                  borderRadius: "4px",
-                }}
-              />
-              <span>{country.name}</span>
+              {option.flag && (
+                <img
+                  src={option.flag}
+                  alt={`${option.name} Flag`}
+                  style={{
+                    width: "20px",
+                    height: "15px",
+                    marginRight: "10px",
+                    borderRadius: "4px",
+                  }}
+                />
+              )}
+              <span>{option.name}</span>
             </div>
           ))}
         </div>

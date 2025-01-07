@@ -1,16 +1,21 @@
+import { useEffect, useState } from "react";
 import { LeftArrow, SecMsgIcon } from "../assets/icons/Icons";
 import Otp from "./common/OTP/Otp";
 
 function EmailCheck({ setEmailChecked }) {
-  //   const handleChange = (e) => {
-  //     const { name, value } = e.target;
-  //     setFormData((prevState) => ({
-  //       ...prevState,
-  //       [name]: value,
-  //     }));
-  //   };
+  const [otp, setOtp] = useState(new Array(4).fill(""));
+  useEffect(() => {
+    const ref = setTimeout(() => {
+      alert("Enter this code: 2342");
+    }, 2000);
+    return () => {
+      clearTimeout(ref);
+    };
+  }, []);
 
-  //OTP//
+  function checkOtpValidation(otp) {
+    return otp.some((o) => o === "");
+  }
 
   return (
     <>
@@ -22,11 +27,12 @@ function EmailCheck({ setEmailChecked }) {
         <p className="header-description-two">omarmouneer@gmail.com</p>
       </div>
       <div className="otp-form">
-        <Otp />
+        <Otp otp={otp} setOtp={setOtp} />
         <button
           type="submit"
           className="verify-btn"
           onClick={() => setEmailChecked(true)}
+          disabled={checkOtpValidation(otp)}
         >
           Verify email
         </button>

@@ -15,9 +15,7 @@ function LeftSide({ setPageNum, pageNum }) {
       <Header pageNum={pageNum} />
       {/* main */}
       <main className="register-page__lsec--main">
-        {[0].includes(pageNum) && (
-          <PersonalDetailsForm setPageNum={setPageNum} />
-        )}
+        {pageNum === 0 && <PersonalDetailsForm setPageNum={setPageNum} />}
         {pageNum === 1 && (
           <>
             {!emailChecked && <EmailCheck setEmailChecked={setEmailChecked} />}

@@ -6,7 +6,9 @@
   font-family: "Inter", serif;
   /* overflow: hidden; */
 }
-
+p {
+  margin-bottom: 0;
+}
 :root {
   --main-color: #7244c8;
 }
