@@ -24,7 +24,7 @@ function EmailVerified({ setPageNum, setEmailChecked }) {
           type="submit"
           className="submit-btn"
           onClick={() => {
-            setPageNum(3);
+            setPageNum(2);
             setEmailChecked(false);
           }}
         >

@@ -39,6 +39,7 @@ function PersonalDetailsForm({ setPageNum }) {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            autoComplete="new-off"
           />
         </div>
         <div className="form-group">
@@ -73,6 +74,7 @@ function PersonalDetailsForm({ setPageNum }) {
             type="password"
             id="password"
             name="password"
+            autoComplete="new-password"
             value={formData.password}
             onChange={handleChange}
             placeholder="Enter your password"
@@ -82,7 +84,7 @@ function PersonalDetailsForm({ setPageNum }) {
         <button
           type="submit"
           className="submit-btn"
-          onClick={() => setPageNum(2)}
+          onClick={() => setPageNum(1)}
         >
           Get Started
         </button>

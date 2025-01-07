@@ -7,6 +7,7 @@ import DescriptionMessage from "../../../components/common/DescMsg/DescriptionMe
 
 export function DescMessage(pageNum) {
   switch (pageNum) {
+    case 0:
     case 1: {
       return {
         icon: <StarsSvg />,

@@ -4,7 +4,7 @@ import Header from "../../../components/layout/Header";
 import PersonalDetailsForm from "../../../components/common/steps/PersonalDetailsForm/PersonalDetailsForm.jsx";
 import EmailCheck from "../../../components/emailCheck.jsx";
 import EmailVerified from "../../../components/EmailVerified.jsx";
-import StoreForm from "../../../components/StoreForm.jsx";
+import StoreForm from "../../../components/StoreForm/StoreForm.jsx";
 import { useState } from "react";
 
 function LeftSide({ setPageNum, pageNum }) {
@@ -15,10 +15,10 @@ function LeftSide({ setPageNum, pageNum }) {
       <Header pageNum={pageNum} />
       {/* main */}
       <main className="register-page__lsec--main">
-        {[0, 1].includes(pageNum) && (
+        {[0].includes(pageNum) && (
           <PersonalDetailsForm setPageNum={setPageNum} />
         )}
-        {pageNum === 2 && (
+        {pageNum === 1 && (
           <>
             {!emailChecked && <EmailCheck setEmailChecked={setEmailChecked} />}
             {emailChecked && (
@@ -29,7 +29,7 @@ function LeftSide({ setPageNum, pageNum }) {
             )}
           </>
         )}
-        {pageNum === 3 && <StoreForm setPageNum={setPageNum} />}
+        {[2, 3].includes(pageNum) && <StoreForm setPageNum={setPageNum} />}
       </main>
 
       {/* footer */}

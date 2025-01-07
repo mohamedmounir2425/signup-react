@@ -1,6 +1,6 @@
-import { LeftArrow } from "../../src/assets/icons/Icons";
+import { LeftArrow } from "../../assets/icons/Icons";
 import { useState } from "react";
-import CustomSelect from "./CustomSelect";
+import CustomSelect from "../CustomSelect";
 import "./StoreForm.css";
 
 function StoreForm({ setPageNum }) {
@@ -25,10 +25,10 @@ function StoreForm({ setPageNum }) {
   };
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit} className="store-form">
+    <div className=" form-container">
+      <form onSubmit={handleSubmit} className="store-form-ctr">
         {/* Store Name */}
-        <div className="store-form">
+        <div className="store-form-group">
           <label htmlFor="name">Store name</label>
           <input
             type="text"
@@ -42,27 +42,30 @@ function StoreForm({ setPageNum }) {
         </div>
 
         {/* Store URL */}
-        <div className="store-form">
+        <div className="store-form-group">
           <label htmlFor="url">Store URL</label>
-          <input
-            type="url"
-            id="url"
-            name="url"
-            value={formData.email}
-            onChange={handleChange}
-            className="store-name"
-            placeholder="Enter your email"
-          />
+          <div className="input-url-ctr">
+            <input
+              type="url"
+              id="url"
+              name="url"
+              value={formData.email}
+              onChange={handleChange}
+              className="store-url"
+              placeholder="My store"
+            />
+            <span>.markatty.com</span>
+          </div>
         </div>
 
         {/* Store Language Dropdown */}
-        <div className="store-form">
+        <div className="store-form-group">
           <label htmlFor="language">Store language</label>
           <CustomSelect />
         </div>
 
         {/* Store Industry */}
-        <div className="store-form">
+        <div className="store-form-group">
           <label htmlFor="password">Store Industry</label>
           <input
             type="password"
@@ -72,15 +75,21 @@ function StoreForm({ setPageNum }) {
             onChange={handleChange}
             className="store-name"
             placeholder="Enter your password"
+            autoComplete="new-password"
           />
-          <span className="examples">Ex.(Baby, Boys fashion, Girls fashion, Mens fashion, etc..).</span>
+          <span className="examples">
+            Ex.(Baby, Boys fashion, Girls fashion, Mens fashion, etc..).
+          </span>
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
           className="submit-btn"
-          onClick={() => alert("Store created")}
+          onClick={() => {
+            setPageNum(3);
+            alert("Store created");
+          }}
         >
           Save
         </button>
